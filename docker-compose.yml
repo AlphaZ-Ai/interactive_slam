@@ -1,0 +1,23 @@
+services:
+  interactive_slam:
+    build:
+      context: .
+      dockerfile: docker/noetic/Dockerfile
+    image: interactive_slam:noetic
+    container_name: interactive_slam
+    network_mode: host
+    environment:
+      - DISPLAY=${DISPLAY}
+      - QT_X11_NO_MITSHM=1
+      - XAUTHORITY=/root/.Xauthority
+      - LIDAR_POINTS_TOPIC=${LIDAR_POINTS_TOPIC}
+      - BAG_SUBDIR=${BAG_SUBDIR}
+      - BASE_LINK_FRAME=${BASE_LINK_FRAME}
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix:rw
+      - ${HOME}/.Xauthority:/root/.Xauthority:ro
+      - ${ROSBAGS_DIR}:/root/rosbags:ro
+      - ${DATA_OUT_DIR}:/root/data_out
+    stdin_open: true
+    tty: true
+    command: ["/root/catkin_ws/src/interactive_slam/docker/mapping_session_cmd.sh"]

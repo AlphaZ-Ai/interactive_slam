@@ -1,3 +1,5 @@
 include/hdl_graph_slam/version.h
 imgui.ini
 build
+.env
+data_out/
