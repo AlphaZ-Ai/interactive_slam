@@ -142,3 +142,18 @@ Kenji Koide, k.koide@aist.go.jp, https://staff.aist.go.jp/k.koide
 
 Mobile Robotics Research Team  
 National Institute of Advanced Industrial Science and Technology (AIST), Japan  [\[URL\]](https://unit.aist.go.jp/hcmrc/mr-rt/index.html)
+
+# running
+
+If running locally
+
+```bash
+xhost +si:localuser:root
+docker compose up
+```
+
+if running on remote server
+
+```bash
+docker compose up
+```
