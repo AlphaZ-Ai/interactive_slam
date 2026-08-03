@@ -10,9 +10,14 @@ services:
       - DISPLAY=${DISPLAY}
       - QT_X11_NO_MITSHM=1
       - XAUTHORITY=/root/.Xauthority
+      # Software (llvmpipe) GLX only reports GL 3.1 by default; interactive_slam's
+      # shaders require GLSL 330 (GL 3.3 core), so force Mesa to report it.
+      - MESA_GL_VERSION_OVERRIDE=3.3
+      - MESA_GLSL_VERSION_OVERRIDE=330
       - LIDAR_POINTS_TOPIC=${LIDAR_POINTS_TOPIC}
       - BAG_SUBDIR=${BAG_SUBDIR}
       - BASE_LINK_FRAME=${BASE_LINK_FRAME}
+      - NUM_SECONDS=${NUM_SECONDS}
     volumes:
       - /tmp/.X11-unix:/tmp/.X11-unix:rw
       - ${HOME}/.Xauthority:/root/.Xauthority:ro
